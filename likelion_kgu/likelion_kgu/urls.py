@@ -9,6 +9,7 @@ urlpatterns = [
     path('festival/', include('festival.urls')),
     path('board/', include('board.urls')),
     path('portfolio/', include('portfolio.urls')),
+    path('teams/', include('team.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

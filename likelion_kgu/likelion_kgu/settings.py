@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'festival.apps.FestivalConfig',
     'board.apps.BoardConfig',
     'portfolio.apps.PortfolioConfig',
+    'team.apps.TeamConfig',
+    'el_pagination',
 ]
 
 MIDDLEWARE = [

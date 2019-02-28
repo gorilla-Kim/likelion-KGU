@@ -1,1 +1,95 @@
-<h1>asdasd</h1>
+{% extends 'likelion/layout.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans "board" %}{% endblock %}
+{% block content %}
+<section id='board'>
+    <main role="main">
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">PORTFOLIO</h1>
+                <p class="lead text-muted">멋쟁이사자처럼 경기대 부원들의 1년간의 열정과 노력의 결실.</p>
+                <p>
+                    <a href="?number=7" class="btn btn-primary my-2">7기 결과물</a>
+                    <a href="?number=6" class="btn btn-secondary my-2">6기 결과물</a>
+                </p>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    {% for contact in contacts %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img width="100%" src="/media/{{contact.document}}">
+                            <div class="card-body">
+                                <p class="card-text">{{contact.summary}}...</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModalScrollable{{contact.id}}">View</button>
+                                    </div>
+                                    <small class="text-muted">{{contact.title}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div
+                        class="modal fade"
+                        id="exampleModalScrollable{{contact.id}}"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="exampleModalScrollableTitle"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalScrollableTitle">{{contact.title}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{contact.description|linebreaks}}<hr>
+                                    {% if contact.git_link %}
+                                    <a class="btn btn-primary" href="{{contact.git_link}}">Github link</a>
+                                    {% else %}
+                                    <a class="btn btn-primary" href="#">깃허브 주소가 없습니다.</a>
+                                    {% endif %}
+                                    {% if contact.blog_link %}
+                                    <a class="btn btn-primary" href="{{contact.blog_link}}">Blog link</a>
+                                    {% else %}
+                                    <a class="btn btn-primary" href="#">블로그 주소가 없습니다.</a>
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                {% if contacts.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ contacts.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+                </span>
+        
+                {% if contacts.has_next %}
+                    <a href="?page={{ contacts.next_page_number }}">next</a>
+                    <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </main>
+</section>
+{% endblock %}
