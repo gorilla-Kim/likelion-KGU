@@ -6,4 +6,5 @@ urlpatterns = [
     path('', include('likelion.urls')),
     path('festival/', include('festival.urls')),
     path('board/', include('board.urls')),
+    path('portfolio/', include('portfolio.urls')),
 ]

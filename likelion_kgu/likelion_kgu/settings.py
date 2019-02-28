@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'likelion.apps.LikelionConfig',
     'festival.apps.FestivalConfig',
     'board.apps.BoardConfig',
+    'portfolio.apps.PortfolioConfig',
 ]
 
 MIDDLEWARE = [
