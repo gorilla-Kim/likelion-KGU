@@ -21,8 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'hmfd-+8_ab_i&&)$1w(jm@@za7a9r5j3d255z2u^yp()$*j47_'
-
-# SECURITY WARNING: keep the secret key used in production secret!
 import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'hmfd-+8_ab_i&&)$1w(jm@@za7a9r5j3d255z2u^yp()$*j47_')
 
